@@ -1,0 +1,26 @@
+
+@echo off
+set "sourceDirectory=D:\source"
+set "destinationDirectory=D:\Destination"
+
+if not exist "%destinationDirectory%" mkdir "%destinationDirectory%"
+
+for %%A in ("%sourceDirectory%\*.*") do (
+    move "%%A" "%destinationDirectory%\"
+)
+
+for /D %%B in ("%sourceDirectory%\*") do (
+    move "%%B" "%destinationDirectory%\%%~nxB"
+)
+
+for /R "%sourceDirectory%" %%C in (*.*) do (
+    move "%%C" "%destinationDirectory%\"
+)
+
+for /D /R "%sourceDirectory%" %%D in (*) do (
+    move "%%D" "%destinationDirectory%\%%~nxD\"
+)
+
+for /D /R "%sourceDirectory%" %%E in (*) do (
+    robocopy "%%E" "%destinationDirectory%\%%~nxE" /E /R:3 /W:2 /TEE /LOG:"C:\file.log"
+)
