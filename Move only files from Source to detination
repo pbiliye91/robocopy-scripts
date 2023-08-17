@@ -1,0 +1,9 @@
+#Move only files from Source to detination . Files will be moved from subdirectories as well.
+
+
+@echo off
+setlocal
+set sourceDirectory="D:/OpenText_Data/IFS/Transfer"
+set destinationDirectory="D:/ReadSoft_Data/Transfer"
+
+robocopy "%sourceDirectory%" "%destinationDirectory%" /MOV /R:3 /S /LOG:"D:\opentext_transfer_copy.log"
